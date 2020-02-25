@@ -11,7 +11,7 @@ def cluster():
     parser.add_argument('--iters', default=10, type=int,
                         help='Please give number of iterations')
     arguments = parser.parse_args()
-    pft = clustering(arguments.samplefile, iters = arguments.iters)
+
 
     k=3
 
@@ -44,4 +44,4 @@ def cluster():
 
 
     if __name__ == "__main__":
-        process()
+        cluster()
