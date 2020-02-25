@@ -13,8 +13,6 @@ def cluster():
     arguments = parser.parse_args()
 
 
-    k=3
-
     lines = open('samples.csv', 'r').readlines()
     ps=[]
     for line in lines: ps.append(tuple(map(float, line.strip().split(','))))
