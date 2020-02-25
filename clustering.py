@@ -5,20 +5,13 @@ from argparse import ArgumentParser
 
 
 def cluster():
-    parser = ArgumentParser(description='travelplanner')
-    parser.add_argument('routefile', type=str,
-                        help='Please give full pathname to route.csv')
-    parser.add_argument('passfile', type=str,
-                        help='Please give full pathname to passenger.csv')
-    parser.add_argument('--speed', default=10, type=int,
-                        help='Give the speed of the bus, lower is faster')
-    parser.add_argument('--saveplots', action='store_true',
-                        help='Optional, If given, save the plots.')
+    parser = ArgumentParser(description='clustering')
+    parser.add_argument('samplesfile', type=str,
+                        help='Please give file path to samples.csv')
+    parser.add_argument('--iters', default=10, type=int,
+                        help='Please give number of iterations')
     arguments = parser.parse_args()
-    pft = travelplanner.Journey(arguments.routefile, arguments.passfile,
-                                speed=arguments.speed)
-    route_for_timetable = travelplanner.Route(arguments.routefile,
-                                              speed=arguments.speed)
+    pft = clustering(arguments.samplefile, iters = arguments.iters)
 
     k=3
 
