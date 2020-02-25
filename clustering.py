@@ -35,7 +35,7 @@ def cluster():
         alloc_ps=[p for j, p in enumerate(ps) if alloc[j] == i]
         new_mean=(sum([a[0] for a in alloc_ps]) / len(alloc_ps), sum([a[1] for a in alloc_ps]) / len(alloc_ps))
         m[i]=new_mean
-      n=n+1
+      n += 1 
 
     for i in range(3):
       alloc_ps=[p for j, p in enumerate(ps) if alloc[j] == i]
