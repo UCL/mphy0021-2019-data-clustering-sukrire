@@ -15,13 +15,15 @@ def cluster():
 
     lines = open(arguments.samplesfile, 'r').readlines()
     ps=[]
+    
     for line in lines: ps.append(tuple(map(float, line.strip().split(','))))
 
     m=[ps[randrange(len(ps))], ps[randrange(len(ps))], ps[randrange(len(ps))]]
 
     alloc=[None]*len(ps)
     n=0
-    while n<10:
+
+    while n<arguments.iters:
       for i in range(len(ps)):
         p=ps[i]
         d=[None] * 3
