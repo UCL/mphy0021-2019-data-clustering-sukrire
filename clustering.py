@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 
 
 def cluster():
-    parser = ArgumentParser(description='clustering')
+    parser = ArgumentParser(description='clustering.py')
     parser.add_argument('samplesfile', type=str,
                         help='Please give file path to samples.csv')
     parser.add_argument('--iters', default=10, type=int,
@@ -13,7 +13,7 @@ def cluster():
     arguments = parser.parse_args()
 
 
-    lines = open('samples.csv', 'r').readlines()
+    lines = open(arguments.samplesfile, 'r').readlines()
     ps=[]
     for line in lines: ps.append(tuple(map(float, line.strip().split(','))))
 
@@ -39,7 +39,7 @@ def cluster():
       alloc_ps=[p for j, p in enumerate(ps) if alloc[j] == i]
       print("Cluster " + str(i) + " is centred at " + str(m[i]) + " and has " + str(len(alloc_ps)) + " points.")
 
+    
 
-
-    if __name__ == "__main__":
-        cluster()
+if __name__ == "__main__":
+    cluster()
