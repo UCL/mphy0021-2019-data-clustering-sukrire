@@ -13,10 +13,10 @@ def cluster():
     arguments = parser.parse_args()
 
 
-    lines = open(arguments.samplesfile, 'r').readlines()
+    datapoints = open(arguments.samplesfile, 'r').readlines()
     ps=[]
     
-    for line in lines: ps.append(tuple(map(float, line.strip().split(','))))
+    for datapoint in datapoints: ps.append(tuple(map(float, datapoint.strip().split(','))))
 
     m=[ps[randrange(len(ps))], ps[randrange(len(ps))], ps[randrange(len(ps))]]
 
