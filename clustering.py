@@ -22,6 +22,7 @@ def cluster():
     #random start points = rsp
     rsp=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
 
+    #define and empty matrix for allocations
     alloc=[None]*len(point_m)
     n=0
     
