@@ -1,7 +1,7 @@
 from math import sqrt
 from random import randrange
 from argparse import ArgumentParser
-
+#from matplotlib import pyplot as plt
 
 
 def cluster():
@@ -22,6 +22,8 @@ def cluster():
 
     alloc=[None]*len(ps)
     n=0
+    
+    #plt.scatter([i[0] for i in ps],[i[1] for i in ps])
 
     while n<arguments.iters:
       for i in range(len(ps)):
@@ -40,8 +42,7 @@ def cluster():
     for i in range(3):
       alloc_ps=[p for j, p in enumerate(ps) if alloc[j] == i]
       print("Cluster " + str(i) + " is centred at " + str(m[i]) + " and has " + str(len(alloc_ps)) + " points.")
-
-    
+   
 
 if __name__ == "__main__":
     cluster()
