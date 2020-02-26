@@ -19,7 +19,8 @@ def cluster():
     
     for datapoint in datapoints: point_m.append(tuple(map(float, datapoint.strip().split(','))))
 
-    m=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
+    #random start points = rsp
+    rsp=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
 
     alloc=[None]*len(point_m)
     n=0
@@ -30,19 +31,19 @@ def cluster():
       for i in range(len(point_m)):
         p=point_m[i]
         d=[None] * 3
-        d[0]=sqrt((p[0]-m[0][0])**2 + (p[1]-m[0][1])**2)
-        d[1]=sqrt((p[0]-m[1][0])**2 + (p[1]-m[1][1])**2)
-        d[2]=sqrt((p[0]-m[2][0])**2 + (p[1]-m[2][1])**2)
+        d[0]=sqrt((p[0]-rsp[0][0])**2 + (p[1]-rsp[0][1])**2)
+        d[1]=sqrt((p[0]-rsp[1][0])**2 + (p[1]-rsp[1][1])**2)
+        d[2]=sqrt((p[0]-rsp[2][0])**2 + (p[1]-rsp[2][1])**2)
         alloc[i]=d.index(min(d))
       for i in range(3):
         alloc_point_m=[p for j, p in enumerate(point_m) if alloc[j] == i]
-        new_mean=(sum([a[0] for a in alloc_point_m]) / len(alloc_point_m), sum([a[1] for a in alloc_ps]) / len(alloc_point_m))
-        m[i]=new_mean
+        new_mean=(sum([a[0] for a in alloc_point_m]) / len(alloc_point_m), sum([a[1] for a in alloc_point_m]) / len(alloc_point_m))
+        rsp[i]=new_mean
       n += 1 
 
     for i in range(3):
       alloc_point_m=[p for j, p in enumerate(point_m) if alloc[j] == i]
-      print("Cluster " + str(i) + " is centred at " + str(m[i]) + " and has " + str(len(alloc_point_m)) + " points.")
+      print("Cluster " + str(i) + " is centred at " + str(rsp[i]) + " and has " + str(len(alloc_point_m)) + " points.")
    
 
 if __name__ == "__main__":
