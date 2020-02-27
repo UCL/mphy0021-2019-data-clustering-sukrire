@@ -22,11 +22,15 @@ def cluster():
     #random start points = rsp
     rsp=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
 
+    print()
+    
     #define and empty matrix for allocations
     alloc=[None]*len(point_m)
     n=0
     
     #plt.scatter([i[0] for i in point_m],[i[1] for i in point_m])
+    #plt.show()
+
 
     while n<arguments.iters:
       for i in range(len(point_m)):
