@@ -22,25 +22,27 @@ def cluster():
                    [datapoints[point2,0],datapoints[point2,1]],
                    [datapoints[point3,0],datapoints[point3,1]]])
 
-    print(rsp)
     #storing array
     str_ary = np.empty(len(datapoints))
     
  
-    for i in range(len(datapoints)):
-        p=datapoints
-        d=np.empty(shape=(3,1))
-        d[0]=np.abs(np.sum(p[i]-rsp[0]))
-        d[1]=np.abs(np.sum(p[i]-rsp[1]))
-        d[2]=np.abs(np.sum(p[i]-rsp[2]))
-        str_ary[i]=(np.argmin(d,axis=0))
+    for j in range(arguments.iters):
+        for i in range(len(datapoints)):
+            p=datapoints
+            d=np.empty(shape=(3,1))
+            d[0]=np.abs(np.sum(p[i]-rsp[0]))
+            d[1]=np.abs(np.sum(p[i]-rsp[1]))
+            d[2]=np.abs(np.sum(p[i]-rsp[2]))
+            str_ary[i]=(np.argmin(d,axis=0))
 
-    rsp[0]=np.sum(datapoints[np.argwhere(str_ary==0)],axis=0)/len(np.argwhere(str_ary==0))
-    rsp[1]=np.sum(datapoints[np.argwhere(str_ary==1)],axis=0)/len(np.argwhere(str_ary==1))
-    rsp[2]=np.sum(datapoints[np.argwhere(str_ary==2)],axis=0)/len(np.argwhere(str_ary==2))
+        rsp[0]=np.sum(datapoints[np.argwhere(str_ary==0)],axis=0)/len(np.argwhere(str_ary==0))
+        rsp[1]=np.sum(datapoints[np.argwhere(str_ary==1)],axis=0)/len(np.argwhere(str_ary==1))
+        rsp[2]=np.sum(datapoints[np.argwhere(str_ary==2)],axis=0)/len(np.argwhere(str_ary==2))
 
     
-    print(rsp)
+    print("Cluster 1 is centred at " + str(rsp[0]) + " and has " + str(len(np.argwhere(str_ary==0))) + " points.")
+    print("Cluster 2 is centred at " + str(rsp[1]) + " and has " + str(len(np.argwhere(str_ary==1))) + " points.")
+    print("Cluster 3 is centred at " + str(rsp[2]) + " and has " + str(len(np.argwhere(str_ary==2))) + " points.")
     
 if __name__ == "__main__":
     cluster()
