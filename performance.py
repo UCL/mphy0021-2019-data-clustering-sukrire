@@ -36,6 +36,7 @@ plt.plot(sample_sizes,time_cluster_num, Label='numpy')
 plt.title('Time taken to run clustering tests vs sample size')
 plt.ylabel('Time in s') 
 plt.xlabel('No of samples')
+
 plt.legend(loc = 'upper left') 
 plt.savefig('performance.png')    
 plt.show()
