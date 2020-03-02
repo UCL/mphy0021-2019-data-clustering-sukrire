@@ -13,30 +13,34 @@ def cluster():
                         help='Please give number of iterations')
     arguments = parser.parse_args()
 
-
     datapoints = open(arguments.samplesfile, 'r').readlines()
+    
     #point matrix = point_m
     point_m=[]
     
+    #chooses how to open a file depending on the filetype
     if arguments.samplesfile.endswith('csv'):
         for datapoint in datapoints: point_m.append(tuple(map(float, datapoint.strip().split(','))))
     elif arguments.samplesfile.endswith('json'):
         with open(arguments.samplesfile, "r") as infile:
             lines_json = json.load(infile)
-            for i in range(len(lines_json)):
-                point_m.append((lines_json[i]['population'], lines_json[i]['books']))
+            for city in lines_json:
+                point_m.append((lines_json[city]['population'], lines_json[city]['books']))
 
     #random start points = rsp
     rsp=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
 
-    print()
+    #debugging and plotting
+    #print(point_m)
+    #plt.scatter([i[0] for i in point_m],[i[1] for i in point_m])
+    #plt.show()
+    
     
     #define and empty matrix for allocations
     alloc=[None]*len(point_m)
     n=0
     
-    #plt.scatter([i[0] for i in point_m],[i[1] for i in point_m])
-    #plt.show()
+
 
 
     while n<arguments.iters:

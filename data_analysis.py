@@ -1,24 +1,26 @@
+import glob
 import json
 
-with open('cities.json') as json_file:
-    data1   = json.load(json_file)
+#open the json files
+with open('cities.json', "r") as infile:
+    cities = json.load(infile)
+with open('libraries.json', "r") as infile:
+    libraries = json.load(infile)
 
-with open('libraries.json') as json_file:
-    data2 = json.load(json_file)
-    
-def combine_func(file1,file2):
-    combine_list=[]
-    for i in range(len(file1)):
-        dict1 = {**file1[i]}
-        
-    for i in range(len(file2)):
-        dict2 = {**file2[i]}
-        
-        combine_dict = {**dict1,**dict2}
-        combine_list.append(combine_dict)
-        
-    return combine_list
-        
+#create combined dict and combine them
 
-with open('combined.json', 'w', encoding='utf-8') as f:
-    json.dump(combine_func(data1,data2), f, ensure_ascii=False, indent=4)
+combined = {}
+for i in range(len(cities)):
+    combined_books = 0
+    for j in range(len(libraries)):
+        if (cities[i]['name'] == libraries[j]['city']):
+            combined_books += libraries[j]['books']
+        
+    combined[cities[i]['name']] = {
+        "population": cities[i]["population"],
+        "books": combined_books
+    }
+
+#write to a new json file
+with open('combined.json', 'w') as f:
+    json.dump(combined, f)
