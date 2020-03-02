@@ -1,6 +1,7 @@
 from math import sqrt
 from random import randrange
 from argparse import ArgumentParser
+import json
 #from matplotlib import pyplot as plt
 
 
@@ -17,7 +18,13 @@ def cluster():
     #point matrix = point_m
     point_m=[]
     
-    for datapoint in datapoints: point_m.append(tuple(map(float, datapoint.strip().split(','))))
+    if arguments.samplesfile.endswith('csv'):
+        for datapoint in datapoints: point_m.append(tuple(map(float, datapoint.strip().split(','))))
+    elif arguments.samplesfile.endswith('json'):
+        with open(arguments.samplesfile, "r") as infile:
+            lines_json = json.load(infile)
+            for i in range(len(lines_json)):
+                point_m.append((lines_json[i]['population'], lines_json[i]['books']))
 
     #random start points = rsp
     rsp=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
