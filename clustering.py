@@ -40,9 +40,6 @@ def cluster():
     alloc=[None]*len(point_m)
     n=0
     
-
-
-
     while n<arguments.iters:
       for i in range(len(point_m)):
         p=point_m[i]
