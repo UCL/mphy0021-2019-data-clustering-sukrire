@@ -2,9 +2,9 @@ import glob
 import json
 
 #open the json files
-with open('data\cities.json', "r") as infile:
+with open('data/cities.json', "r") as infile:
     cities = json.load(infile)
-with open('data\libraries.json', "r") as infile:
+with open('data/libraries.json', "r") as infile:
     libraries = json.load(infile)
 
 #create combined dict and combine them
@@ -22,5 +22,5 @@ for i in range(len(cities)):
     }
 
 #write to a new json file
-with open('data\combined.json', 'w') as f:
-    json.dump(combined, f)
+with open('data/combine.json', 'w') as f:
+    json.dump(combined, f) 
