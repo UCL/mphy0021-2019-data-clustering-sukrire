@@ -5,10 +5,11 @@ import json
 with open('data\cities.json', "r") as infile:
     cities = json.load(infile)
 with open('data\libraries.json', "r") as infile:
-
+    libraries = json.load(infile)
 
 #create combined dict and combine them
 combined = {}
+
 for i in range(len(cities)):
     combined_books = 0
     for j in range(len(libraries)):
