@@ -2,7 +2,7 @@ import numpy as np
 from numpy import random
 from argparse import ArgumentParser
 
-def cluster_num(samplesfile,iters):
+def cluster_num(samplesfile,iters,datapoints):
     datapoints = np.genfromtxt(samplesfile, 
                                delimiter=",", dtype='float')
     
@@ -45,4 +45,5 @@ if __name__ == "__main__":
     arguments = parser.parse_args()
     samplesfile=arguments.samplesfile
     iters=arguments.iters
-    cluster_num(samplesfile,iters)
+    datapoints = np.genfromtxt(samplesfile, delimiter=",", dtype='float')
+    cluster_num(samplesfile,iters,datapoints)
