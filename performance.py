@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import csv
 import random
+import os
 
 
 def generate_points(no_points):
@@ -40,6 +41,8 @@ for i in range(len(sample_sizes)):
     
 print('total time for no numpy cluster = ',np.sum(time_cluster))
 print('total time for numpy cluster = ',np.sum(time_cluster_num))
+
+os.remove("samples_test.csv")
 
 plt.plot(sample_sizes,time_cluster, Label='no numpy', color='g')
 plt.plot(sample_sizes,time_cluster_num, Label='numpy',color='r') 
