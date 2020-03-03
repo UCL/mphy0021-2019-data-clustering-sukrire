@@ -34,7 +34,7 @@ def cluster_num():
             d2=(p[i]-rsp[1])
             d3=(p[i]-rsp[2])
             d[0]=np.hypot(d1[0],d1[1])
-            d[1]=np.hypot(d2[0],d3[1])
+            d[1]=np.hypot(d2[0],d2[1])
             d[2]=np.hypot(d3[0],d3[1])
             str_ary[i]=(np.argmin(d,axis=0))
 

@@ -25,6 +25,7 @@ def cluster():
         with open(arguments.samplesfile, "r") as infile:
             lines_json = json.load(infile)
             for city in lines_json:
+                #if lines_json[city]['population'] & lines_json[city]['books']:
                 point_m.append((lines_json[city]['population'], lines_json[city]['books']))
 
     #random start points = rsp
@@ -50,8 +51,11 @@ def cluster():
         alloc[i]=d.index(min(d))
       for i in range(3):
         alloc_point_m=[p for j, p in enumerate(point_m) if alloc[j] == i]
-        new_mean=(sum([a[0] for a in alloc_point_m]) / len(alloc_point_m), sum([a[1] for a in alloc_point_m]) / len(alloc_point_m))
-        rsp[i]=new_mean
+        if len(alloc_point_m) == 0:
+            pass
+        else:
+            new_mean=(sum([a[0] for a in alloc_point_m]) / len(alloc_point_m), sum([a[1] for a in alloc_point_m]) / len(alloc_point_m))
+            rsp[i]=new_mean
       n += 1 
 
     for i in range(3):
