@@ -41,12 +41,14 @@ for i in range(len(sample_sizes)):
 print('total time for no numpy cluster = ',np.sum(time_cluster))
 print('total time for numpy cluster = ',np.sum(time_cluster_num))
 
-plt.plot(sample_sizes,time_cluster, Label='no numpy')
-plt.plot(sample_sizes,time_cluster_num, Label='numpy') 
+plt.plot(sample_sizes,time_cluster, Label='no numpy', color='g')
+plt.plot(sample_sizes,time_cluster_num, Label='numpy',color='r') 
 plt.title('Time taken to run clustering tests vs sample size')
 plt.ylabel('Time in s') 
 plt.xlabel('No of samples')
-
+plt.xlim(0,10000)
+plt.ylim(0)
+plt.grid()
 plt.legend(loc = 'upper left') 
 plt.savefig('performance.png')    
 plt.show()
