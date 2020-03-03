@@ -24,7 +24,7 @@ class Timer:
         self.end = time.time()
         self.interval = self.end - self.start
         
-sample_sizes= np.linspace(100,10000,20)
+sample_sizes= np.linspace(100,10000,10)
 time_cluster = []
 time_cluster_num = []
 

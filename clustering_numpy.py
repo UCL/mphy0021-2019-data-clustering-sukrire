@@ -20,12 +20,14 @@ def cluster_num(datapoints,iters=10):
     
  
     for j in range(iters):
-        for i in range(len(datapoints)):
-            d=np.empty(shape=(3,1))
-            d[0]=np.hypot(datapoints[i,0]-rsp[0,0],datapoints[i,1]-rsp[0,1])
-            d[1]=np.hypot(datapoints[i,0]-rsp[1,0],datapoints[i,1]-rsp[1,1])
-            d[2]=np.hypot(datapoints[i,0]-rsp[2,0],datapoints[i,1]-rsp[2,1])
-            str_ary[i]=(np.argmin(d,axis=0))
+        a=datapoints-rsp[0]
+        b=datapoints-rsp[1]
+        c=datapoints-rsp[2]
+        nearest1 = np.hypot(a[:,0],a[:,1])
+        nearest2 = np.hypot(b[:,0],b[:,1])
+        nearest3 = np.hypot(c[:,0],c[:,1])
+        stacked_matrix = np.stack((nearest1,nearest2,nearest3))
+        str_ary = np.argmin(stacked_matrix, axis=0)
             
         rsp[0]=np.sum(datapoints[np.argwhere(str_ary==0)],axis=0)/len(np.argwhere(str_ary==0))
         rsp[1]=np.sum(datapoints[np.argwhere(str_ary==1)],axis=0)/len(np.argwhere(str_ary==1))
