@@ -21,7 +21,6 @@ def cluster_num(samplesfile,iters):
  
     for j in range(iters):
         for i in range(len(datapoints)):
-            p=datapoints
             d=np.empty(shape=(3,1))
             d[0]=np.hypot(datapoints[i,0]-rsp[0,0],datapoints[i,1]-rsp[0,1])
             d[1]=np.hypot(datapoints[i,0]-rsp[1,0],datapoints[i,1]-rsp[1,1])
