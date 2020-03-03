@@ -21,5 +21,5 @@ for i in range(len(cities)):
     }
 
 #write to a new json file
-with open('combined.json', 'w') as f:
+with open('data\combined.json', 'w') as f:
     json.dump(combined, f)
