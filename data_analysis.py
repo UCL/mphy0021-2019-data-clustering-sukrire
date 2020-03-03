@@ -2,7 +2,7 @@ import glob
 import json
 
 #open the json files
-def stupid_function():
+def combined_function():
     with open('data/cities.json', "r") as infile:
         cities = json.load(infile)
     with open('data/libraries.json', "r") as infile:
@@ -26,4 +26,4 @@ def stupid_function():
     with open('data/combined.json', 'w') as f:
         json.dump(combined, f) 
         
-stupid_function()
+combined_function()

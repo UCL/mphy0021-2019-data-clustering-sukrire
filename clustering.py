@@ -5,7 +5,7 @@ import json
 #from matplotlib import pyplot as plt
 
 
-def cluster(samplesfile,iters,point_m):
+def cluster(samplesfile,iters=10):
     #random start points = rsp
     rsp=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
 
@@ -44,13 +44,13 @@ if __name__ == "__main__":
     arguments = parser.parse_args()
     samplesfile=arguments.samplesfile
     iters=arguments.iters
-    datapoints = open(samplesfile, 'r').readlines()
     
     #point matrix = point_m
     point_m=[]
     
     #chooses how to open a file depending on the filetype
     if samplesfile.endswith('csv'):
+        datapoints = open(samplesfile, 'r').readlines()
         for datapoint in datapoints: point_m.append(tuple(map(float, datapoint.strip().split(','))))
     elif samplesfile.endswith('json'):
         with open(samplesfile, "r") as infile:
@@ -58,4 +58,4 @@ if __name__ == "__main__":
             for city in lines_json:
                 point_m.append((lines_json[city]['population'], lines_json[city]['books']))
                 
-    cluster(samplesfile,iters,point_m)
+    cluster(samplesfile,iters)
