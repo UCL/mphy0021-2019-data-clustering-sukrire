@@ -28,11 +28,10 @@ def cluster_num():
  
     for j in range(arguments.iters):
         for i in range(len(datapoints)):
-            p=datapoints
             d=np.empty(shape=(3,1))
-            d[0]=np.sum(np.abs(p[i]-rsp[0]))
-            d[1]=np.sum(np.abs(p[i]-rsp[1]))
-            d[2]=np.sum(np.abs(p[i]-rsp[2]))
+            d[0]=np.hypot(datapoints[i,0]-rsp[0,0],datapoints[i,1]-rsp[0,1])
+            d[1]=np.hypot(datapoints[i,0]-rsp[1,0],datapoints[i,1]-rsp[1,1])
+            d[2]=np.hypot(datapoints[i,0]-rsp[2,0],datapoints[i,1]-rsp[2,1])
             str_ary[i]=(np.argmin(d,axis=0))
 
         rsp[0]=np.sum(datapoints[np.argwhere(str_ary==0)],axis=0)/len(np.argwhere(str_ary==0))

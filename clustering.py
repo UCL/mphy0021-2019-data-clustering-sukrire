@@ -1,6 +1,7 @@
 from math import sqrt
 from random import randrange
 from argparse import ArgumentParser
+import json
 #from matplotlib import pyplot as plt
 
 
@@ -12,26 +13,34 @@ def cluster():
                         help='Please give number of iterations')
     arguments = parser.parse_args()
 
-
     datapoints = open(arguments.samplesfile, 'r').readlines()
+    
     #point matrix = point_m
     point_m=[]
     
-    for datapoint in datapoints: point_m.append(tuple(map(float, datapoint.strip().split(','))))
+    #chooses how to open a file depending on the filetype
+    if arguments.samplesfile.endswith('csv'):
+        for datapoint in datapoints: point_m.append(tuple(map(float, datapoint.strip().split(','))))
+    elif arguments.samplesfile.endswith('json'):
+        with open(arguments.samplesfile, "r") as infile:
+            lines_json = json.load(infile)
+            for city in lines_json:
+                #if lines_json[city]['population'] & lines_json[city]['books']:
+                point_m.append((lines_json[city]['population'], lines_json[city]['books']))
 
     #random start points = rsp
     rsp=[point_m[randrange(len(point_m))], point_m[randrange(len(point_m))], point_m[randrange(len(point_m))]]
 
-    print()
+    #debugging and plotting
+    #print(point_m)
+    #plt.scatter([i[0] for i in point_m],[i[1] for i in point_m])
+    #plt.show()
+    
     
     #define and empty matrix for allocations
     alloc=[None]*len(point_m)
     n=0
     
-    #plt.scatter([i[0] for i in point_m],[i[1] for i in point_m])
-    #plt.show()
-
-
     while n<arguments.iters:
       for i in range(len(point_m)):
         p=point_m[i]
@@ -42,8 +51,11 @@ def cluster():
         alloc[i]=d.index(min(d))
       for i in range(3):
         alloc_point_m=[p for j, p in enumerate(point_m) if alloc[j] == i]
-        new_mean=(sum([a[0] for a in alloc_point_m]) / len(alloc_point_m), sum([a[1] for a in alloc_point_m]) / len(alloc_point_m))
-        rsp[i]=new_mean
+        if len(alloc_point_m) == 0:
+            pass
+        else:
+            new_mean=(sum([a[0] for a in alloc_point_m]) / len(alloc_point_m), sum([a[1] for a in alloc_point_m]) / len(alloc_point_m))
+            rsp[i]=new_mean
       n += 1 
 
     for i in range(3):
@@ -53,3 +65,4 @@ def cluster():
 
 if __name__ == "__main__":
     cluster()
+
